@@ -48,8 +48,12 @@ const http = require("http");
 const PORT = 8090;
 
 const requestHandler = (request, response) => {
+  if (request.url.indexOf("/home") >= 0) {
+    response.writeHead(200, { "Content-type": "text/json" });
+    return response.end('{ "url": "homepage" }');
+  }
   response.writeHead(200, { "Content-type": "text/json" });
-  response.end(JSON.stringify({ name: "Andy", surname: "Pidlubnyi" }));
+  return response.end('{ "url": "other" }');
 };
 const server = http.createServer(requestHandler);
 server.listen(PORT, (err) => {
