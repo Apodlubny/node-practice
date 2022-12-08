@@ -23,19 +23,38 @@
 // });
 
 // Давайте напишем скрипт files.js, который будет читать текущий каталог и выводить его содержимое: имя файла, его размер и дату последнего изменения.
-const fs = require("fs").promises;
+// const fs = require("fs").promises;
 
-fs.readdir(__dirname)
-  .then((files) => {
-    return Promise.all(
-      files.map(async (filename) => {
-        const stats = await fs.stat(filename);
-        return {
-          Name: filename,
-          Size: stats.size,
-          Date: stats.mtime,
-        };
-      })
-    );
-  })
-  .then((result) => console.table(result));
+// fs.readdir(__dirname)
+//   .then((files) => {
+//     return Promise.all(
+//       files.map(async (filename) => {
+//         const stats = await fs.stat(filename);
+//         return {
+//           Name: filename,
+//           Size: stats.size,
+//           Date: stats.mtime,
+//         };
+//       })
+//     );
+//   })
+//   .then((result) => console.table(result));
+
+// Module 2
+
+// Запуск сервера
+const http = require("http");
+
+const PORT = 8090;
+
+const requestHandler = (request, response) => {
+  response.writeHead(200, { "Content-type": "text/json" });
+  response.end(JSON.stringify({ name: "Andy", surname: "Pidlubnyi" }));
+};
+const server = http.createServer(requestHandler);
+server.listen(PORT, (err) => {
+  if (err) {
+    console.error("Error at server launch:", err);
+  }
+  console.log(`Server works at port ${PORT}`);
+});
