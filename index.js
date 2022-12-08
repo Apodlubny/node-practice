@@ -41,22 +41,49 @@
 //   .then((result) => console.table(result));
 
 // Module 2
-
+// *******************************************************
 // Запуск сервера
-const http = require("http");
+// const http = require("http");
 
-const PORT = 8090;
+// const PORT = 8090;
 
-const requestHandler = (request, response) => {
-  if (request.url.indexOf("/home") >= 0) {
-    response.writeHead(200, { "Content-type": "text/json" });
-    return response.end('{ "url": "homepage" }');
-  }
-  response.writeHead(200, { "Content-type": "text/json" });
-  return response.end('{ "url": "other" }');
-};
-const server = http.createServer(requestHandler);
-server.listen(PORT, (err) => {
+// const requestHandler = (request, response) => {
+//   if (request.url.indexOf("/home") >= 0) {
+//     response.writeHead(200, { "Content-type": "text/json" });
+//     return response.end('{ "url": "homepage" }');
+//   }
+//   response.writeHead(200, { "Content-type": "text/json" });
+//   return response.end('{ "url": "other" }');
+// };
+// const server = http.createServer(requestHandler);
+// server.listen(PORT, (err) => {
+//   if (err) {
+//     console.error("Error at server launch:", err);
+//   }
+//   console.log(`Server works at port ${PORT}`);
+// });
+// *******************************************************
+
+// Server launch with Express
+const express = require("express");
+
+const app = express();
+const PORT = 8081;
+// основные команды
+app.get("/home", (req, res) => {
+  res.send("get request");
+});
+app.post("/home", (req, res) => {
+  res.send("post request");
+});
+app.delete("/home", (req, res) => {
+  res.send("delete request");
+});
+app.use("/home", (req, res) => {
+  res.send("All commands request");
+});
+
+app.listen(PORT, (err) => {
   if (err) {
     console.error("Error at server launch:", err);
   }
