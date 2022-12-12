@@ -65,27 +65,53 @@
 // *******************************************************
 
 // Server launch with Express
+// const express = require("express");
+
+// const app = express();
+// const PORT = 8081;
+// // основные команды
+// app.get("/home", (req, res) => {
+//   res.send("get request");
+// });
+// app.post("/home", (req, res) => {
+//   res.send("post request");
+// });
+// app.delete("/home", (req, res) => {
+//   res.send("delete request");
+// });
+// app.use("/home", (req, res) => {
+//   res.send("All commands request");
+// });
+
+// app.listen(PORT, (err) => {
+//   if (err) {
+//     console.error("Error at server launch:", err);
+//   }
+//   console.log(`Server works at port ${PORT}`);
+// });
+
+// *******************************************************
+// MODULE 2
 const express = require("express");
-
 const app = express();
-const PORT = 8081;
-// основные команды
-app.get("/home", (req, res) => {
-  res.send("get request");
-});
-app.post("/home", (req, res) => {
-  res.send("post request");
-});
-app.delete("/home", (req, res) => {
-  res.send("delete request");
-});
-app.use("/home", (req, res) => {
-  res.send("All commands request");
+
+app.get("/", (req, res) => {
+  res.send("Hello World from Node.js!");
 });
 
-app.listen(PORT, (err) => {
-  if (err) {
-    console.error("Error at server launch:", err);
-  }
-  console.log(`Server works at port ${PORT}`);
+app.get("/con?tact", (req, res) => {
+  res.send("<h1>Contact page</h1>");
+});
+
+app.use((req, res, next) => {
+  console.log("Наше промежуточное ПО");
+  next();
+});
+app.listen(3000, () => {
+  console.log("Example app listening on port 3000!");
+});
+
+// Первый способ - передать через параметр. Маршруты могут содержать параметры — именованные сегменты URL-адреса. Название параметра должно включать символы из диапазона [A-Za-z0-9_]. В определении маршрута, перед параметром, ставится знак двоеточия. Добавим следующий обработчик для маршрута:
+app.get("/contact/:id", (req, res) => {
+  res.send(`<h1>Contact</h1> Параметр: ${req.params.id}`);
 });
