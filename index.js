@@ -115,3 +115,18 @@ app.listen(3000, () => {
 app.get("/contact/:id", (req, res) => {
   res.send(`<h1>Contact</h1> Параметр: ${req.params.id}`);
 });
+// Роутинг
+const express = require("express");
+const router = express.Router();
+
+// определим домашний роутер
+router.get("/", (req, res) => {
+  res.send("Это главный роутер");
+});
+
+// определим роутер about
+router.get("/about", (req, res) => {
+  res.send("About");
+});
+
+module.exports = router;
