@@ -47,3 +47,13 @@ app.get("/products", (req, res) => {
 });
 
 app.listen(3000, () => console.log("Server running!"));
+
+// примененние middleware для логирования операций
+fs = require("fs/promises");
+moment = require("moment");
+app.use(async (req, res, next) => {
+  const { method, url } = req;
+  const date = moment().format("DD-MM-YYYY_hh:mm:ss");
+  await fs.appendFile("server.log", `\n${method} ${url} ${date}`);
+  next();
+});
