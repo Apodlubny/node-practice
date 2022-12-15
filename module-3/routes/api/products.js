@@ -10,7 +10,7 @@ const router = express.Router();
 4. Обновить товар по id.
 5. Удалить товар по id.
 */
-// GET /api/products
+// 1. GET /api/products
 router.get("/", (req, res) => {
   res.json({
     status: "success",
@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
     },
   });
 });
-
+// 2. GET /api/products/:id
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   const result = products.find((item) => item._id === id);
@@ -39,7 +39,7 @@ router.get("/:id", (req, res) => {
     },
   });
 });
-// POST /api/products
+// 3. POST /api/products
 router.post("/", (req, res) => {
   const newProduct = { ...req.body, id: v4() };
   products.push(newProduct);
