@@ -1,8 +1,8 @@
-const express = require("express");
+// const express = require("express");
 
-const products = require("./products");
+// const products = require("./products");
 
-const app = express();
+// const app = express();
 
 // Если прийдет GET запрос на адрес /contacts, выполнить эту функцию
 // *****************************************************************
@@ -33,27 +33,49 @@ const app = express();
 
 //  middlewares промежуточный обработчики
 // next говорит о том что нужно искать дальше.
-app.use((req, res, next) => {
-  console.log("First middleware");
-  next();
-});
-app.use((req, res, next) => {
-  console.log("Second middleware");
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log("First middleware");
+//   next();
+// });
+// app.use((req, res, next) => {
+//   console.log("Second middleware");
+//   next();
+// });
 
-app.get("/products", (req, res) => {
-  res.json(products);
-});
+// app.get("/products", (req, res) => {
+//   res.json(products);
+// });
 
-app.listen(3000, () => console.log("Server running!"));
+// app.listen(3000, () => console.log("Server running!"));
 
 // примененние middleware для логирования операций
-fs = require("fs/promises");
-moment = require("moment");
-app.use(async (req, res, next) => {
-  const { method, url } = req;
-  const date = moment().format("DD-MM-YYYY_hh:mm:ss");
-  await fs.appendFile("server.log", `\n${method} ${url} ${date}`);
-  next();
-});
+// fs = require("fs/promises");
+// moment = require("moment");
+// app.use(async (req, res, next) => {
+//   const { method, url } = req;
+//   const date = moment().format("DD-MM-YYYY_hh:mm:ss");
+//   await fs.appendFile("server.log", `\n${method} ${url} ${date}`);
+//   next();
+// });
+// *****************************************************************
+
+// // cors - пакет который разершает кросс-доменные запросы. Нужен на этапе разработки для совместной работы
+// const cors = require("cors");
+// // вызов корс
+// app.use(cors());
+// *****************************************************************
+// сервер с products
+
+const express = require("express");
+const cors = require("cors");
+
+const productsRouter = require("./routes/api/products");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.use("/api/products", productsRouter);
+
+app.listen(3000);
