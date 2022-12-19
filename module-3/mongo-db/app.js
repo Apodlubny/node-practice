@@ -1,17 +1,24 @@
-// mongo-db user password feESIVX1Rlv1bEwx
-
-// mongodb+srv://Andy:feESIVX1Rlv1bEwx@cluster0.ics529r.mongodb.net/test
-
-// mongodb+srv://Andy:<password>@cluster0.ics529r.mongodb.net/?retryWrites=true&w=majority
 const mongoose = require("mongoose");
+const express = require("express");
+const cors = require("cors");
 // dotenv для скрытого доступа к паролям и секретным данным через файл .env
-const dotenv = require("dotenv");
-dotenv.config();
-const { DB_HOST } = process.env;
+// variant 1
+// const dotenv = require("dotenv");
+// dotenv.config();
+// variant 2
+require("dotenv").config();
+const { DB_HOST, PORT = 3000 } = process.env;
+const productsRouter = require("./routes/api/products");
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use("/api/products", productsRouter);
+
 //обработка ошибки подключения к базе
 mongoose
   .connect(DB_HOST)
-  .then(() => console.log("Database works!"))
+  .then(() => app.listen(PORT))
   .catch((error) => {
     console.log(error.message), process.exit(1);
   });
