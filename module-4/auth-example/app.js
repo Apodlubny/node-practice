@@ -13,6 +13,9 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
+// 1. добавление маршрута для пользователей 
+app.use("api/auth", )
+
 app.use("/api/products", productsRouter);
 
 app.use((req, res) => {
