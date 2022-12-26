@@ -4,7 +4,11 @@
 const express = require("express");
 
 const { validation, ctrlWrapper } = require("../../middlewares");
+const { auth: ctrl} = require("../../controllers")
 
 const router = express.Router();
 
+// 5. прописываем роуты
+
+router.post("/register", ctrlWrapper(ctrl.register))
 module.exports = router;

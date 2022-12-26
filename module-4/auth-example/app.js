@@ -2,7 +2,8 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
-
+// 4. импортируем auth router
+const authRouter = require("./routes/api/auth")
 const productsRouter = require("./routes/api/products");
 
 const app = express();
@@ -14,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 // 1. добавление маршрута для пользователей 
-app.use("api/auth", )
+app.use("api/auth", authRouter )
 
 app.use("/api/products", productsRouter);
 
