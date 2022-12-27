@@ -1,4 +1,4 @@
-const {User} = require("../../models")
+const {User} = require("../../models");
 const {Conflict} = require("http-errors");
 
 const register = async(req, res)=>{

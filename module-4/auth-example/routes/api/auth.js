@@ -12,5 +12,6 @@ const router = express.Router();
 
 // 5. прописываем роуты
 
-router.post("/register", validation(joiRegisterSchema), ctrlWrapper(ctrl.register))
+router.post("/register", validation(joiRegisterSchema), ctrlWrapper(ctrl.register));
+
 module.exports = router;
