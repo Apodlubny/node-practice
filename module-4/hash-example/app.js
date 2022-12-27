@@ -12,3 +12,6 @@ console.log(result1);
 
 const result2 = bcrypt.compareSync("passwort", hashPassword);
 console.log(result2);
+
+const result3 = bcrypt.compareSync("password", hashPassword);
+console.log(result3);
