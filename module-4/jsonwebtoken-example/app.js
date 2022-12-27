@@ -7,10 +7,10 @@ const payload = {
 }
 
 const token = jwt.sign(payload, SECRET_KEY, {expiresIn: "1h"})
-console.log(token);
+// console.log(token);
 
 const decodeToken = jwt.decode(token);
-console.log(decodeToken);
+// console.log(decodeToken);
 
 try {
     // const result = jwt.verify(token, SECRET_KEY);
