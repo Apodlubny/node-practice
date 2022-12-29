@@ -1,7 +1,8 @@
 const { Product } = require("../../models");
 
 const getAll = async (req, res) => {
-  const result = await Product.find({});
+  const {_id} = req.user;
+  const result = await Product.find({owner: _id}).populate("owner", "_id name email");
   res.json({
     status: "success",
     code: 200,
