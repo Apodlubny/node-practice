@@ -1,7 +1,8 @@
+// 4. створюємо модель user.js
 const {Schema, model} = require("mongoose");
 const Joi = require("joi");
 const bcrypt = require("bcryptjs");
-
+// 5. створюємо схему юзера
 const userSchema = Schema({
     name: {
         type: String,
