@@ -4,6 +4,7 @@ const express = require("express");
 const {auth, validation, ctrlWrapper} = require("../../middlewares");
 // 3. стоврюємо в папці controllers папку auth.js і імпортуємо в роут auth
 const {auth: ctrl} = require("../../controllers");
+// 6. імпортуємо схеми юзера з моделей
 const {joiRegisterSchema, joiLoginSchema} = require("../../models/user");
 
 const router = express.Router();
