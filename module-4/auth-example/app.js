@@ -2,7 +2,7 @@ const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
 require("dotenv").config();
-
+// 2. створюємо новий роут authRouter
 const authRouter = require("./routes/api/auth");
 const usersRouter = require("./routes/api/users");
 const productsRouter = require("./routes/api/products");
@@ -14,7 +14,7 @@ const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 app.use(logger(formatsLogger))
 app.use(cors())
 app.use(express.json())
-
+// 3. додаємо нові маршрути
 app.use("/api/auth", authRouter);
 app.use("/api/users", usersRouter);
 app.use('/api/products', productsRouter);

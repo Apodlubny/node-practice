@@ -1,3 +1,4 @@
+// 1. створюємо новий роут auth
 const express = require("express");
 
 const {auth, validation, ctrlWrapper} = require("../../middlewares");
