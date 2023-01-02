@@ -3,12 +3,14 @@ const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs/promises");
+const {v4} = require("uuid");
 
 const app = express();
 
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"))
 //2.створюємо шлях до тимчасової папки temp за допомогою path (налаштування destination)
 const tempDir = path.join(__dirname, "temp");
 // console.log(tempDir);
@@ -44,11 +46,27 @@ app.post("/api/products", upload.single("image"), async(req, res)=>{
 //    fs.rename()
 const {path: tempUpload, originalname} = req.file;
 const resultUpload = path.join(productsDir, originalname);
+
 // console.log(tempUpload);
 // console.log(resultUpload);
-await fs.rename(tempUpload, resultUpload)
-
+try {
+    await fs.rename(tempUpload, resultUpload);
+    const image = path.join("products", originalname)
+    const newProduct = {
+        name: req.body.name,
+        id: v4(),
+        image
+    };
+    products.push(newProduct);
+    res.status(201).json(newProduct);
+} catch (error) {
+    await fs.unlink(tempUpload);
+}
 });
+
+app.get("/api/products", async(req, res)=> {
+    res.json(products);
+})
 
 
 app.listen(PORT);
