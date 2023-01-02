@@ -26,10 +26,15 @@ const multerConfig = multer.diskStorage({
     }
 
 })
+//3. створюємо мідлвар і передаємо в ключ storage налаштування  multerConfig
+const upload = multer({
+    storage: multerConfig,
+});
 
 const {PORT=3000}= process.env;
-
-app.post("/api/products", async(req, res)=>{
+ 
+//4. вказуємо мідлвару upload в роуті
+app.post("/api/products", upload.single("image"), async(req, res)=>{
 
 });
 
