@@ -21,6 +21,12 @@ const userSchema = Schema({
     token: {
         type: String,
         default: null
+    },
+    //1. добавляем в модель поле avatarURL
+    //2. добавляем пакет gravatar для возможности установки аватарки по умолчанию и идем в контроллер регистрации
+    avatarURL: {
+        type: String,
+        required: true
     }
 }, {versionKey: false, timestamps: true});
 

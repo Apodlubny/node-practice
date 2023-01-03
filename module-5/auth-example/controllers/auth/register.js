@@ -1,5 +1,7 @@
 const {Conflict} = require("http-errors");
 // const bcrypt = require("bcryptjs");
+//3. импортируем gravatar
+const gravatar = require("gravatar");
 
 const {User} = require("../../models");
 
@@ -9,7 +11,9 @@ const register = async(req, res)=> {
     if(user){
         throw new Conflict(`User with ${email} already exist`)
     }
-    const newUser = new User({name, email});
+    //4. перед сохранением создаем переменную avatarURL/ вызываем gravatar и методу url передаем email. avatarURL передаем в newUser
+    const avatarURL = gravatar.url(email);
+    const newUser = new User({name, email, avatarURL});
     /*
     newUser = {
         name, 
@@ -39,7 +43,8 @@ const register = async(req, res)=> {
         data: {
             user: {
                 email,
-                name
+                name,
+                avatarURL
             }
         }
     });

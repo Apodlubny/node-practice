@@ -10,6 +10,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+//мідлвара для можливості отрімувати статичні файли з боку фронтенду
 app.use(express.static("public"))
 //2.створюємо шлях до тимчасової папки temp за допомогою path (налаштування destination)
 const tempDir = path.join(__dirname, "temp");
