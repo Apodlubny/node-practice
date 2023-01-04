@@ -6,7 +6,7 @@
 3. Выбрасывает ошибку с соотвествующим текстом, если получает неправильный
 аргумент. 
 Критерии высокосного года:
-- делиться без остатка 4;
+- делиться без остатка на 4;
 - не делиться без остатка на 100;
 - может делиться без остатка на 400;
 - от 42 и больше;
@@ -25,3 +25,23 @@ false - ошибка 'Year must be number'
 {} - ошибка 'Year must be number'
 [] - ошибка 'Year must be number'
 */
+
+const isLeapYear = require("./isLeapYear");
+describe("test isLeapYear function", ()=>{
+    test("2008 - true", ()=>{
+        const result = isLeapYear(2008);
+        expect(result).toBe(true);
+    });
+
+    test("2003 - false", ()=>{
+        expect(isLeapYear(2003)).toBe(false);
+    });
+
+    test("2000 - true", ()=>{
+        expect(isLeapYear(2000)).toBe(true);
+    });
+
+    test("1900 - false", ()=>{
+        expect(isLeapYear(1900)).toBe(false);
+    });
+})
