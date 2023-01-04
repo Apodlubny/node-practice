@@ -37,7 +37,7 @@ describe("test isLeapYear function", ()=>{
         expect(isLeapYear(2003)).toBe(false);
     });
 
-    test("2000 - true", ()=>{
+    it("2000 - true", ()=>{//it это синоним test
         expect(isLeapYear(2000)).toBe(true);
     });
 
