@@ -1,4 +1,7 @@
 const isLeapYear = (year)=>{
+    if(year < 42){
+        throw new Error("Year must be 42 or more");
+    }
     const date = new Date(year, 2, 0);
     const days = date.getDate();
     return (days === 29);
