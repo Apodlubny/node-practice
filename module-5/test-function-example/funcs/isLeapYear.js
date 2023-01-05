@@ -1,4 +1,7 @@
 const isLeapYear = (year)=>{
+    if (!Number.isInteger(year)){
+        throw new Error("Year must be integer");
+    }
     if(year < 42){
         throw new Error("Year must be 42 or more");
     }

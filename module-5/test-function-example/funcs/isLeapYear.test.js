@@ -46,6 +46,9 @@ describe("test isLeapYear function", ()=>{
     });
 
     test("41 - error 'Year must be 42 or more'", ()=>{
-        expect(()=>isLeapYear(41)).toThrow("Year must be 42 or more");
+        expect(()=>isLeapYear(41)).toThrow("Year must be 42 or more");//в expect нужно передавать колбек а не результат
+    });
+    test("2008.4 - error 'Year must be integer'", ()=>{
+        expect(()=>isLeapYear(2008.4)).toThrow("Year must be integer");//в expect нужно передавать колбек а не результат
     });
 })
