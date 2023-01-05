@@ -2,6 +2,9 @@ const isLeapYear = (year)=>{
     if(year === undefined){
         throw new Error("Year must be exist");
     }
+    if (typeof year !== "number"){
+        throw new Error("Year must be number")
+    }
     if (!Number.isInteger(year)){
         throw new Error("Year must be integer");
     }

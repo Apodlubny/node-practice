@@ -57,4 +57,22 @@ describe("test isLeapYear function", ()=>{
     test(" '2008' - error 'Year must be number'", ()=>{
         expect(()=>isLeapYear('2008')).toThrow("Year must be number");//в expect нужно передавать колбек а не результат
     });
+    test(" null - error 'Year must be number'", ()=>{
+        expect(()=>isLeapYear(null)).toThrow("Year must be number");//в expect нужно передавать колбек а не результат
+    });
+    test(" true - error 'Year must be number'", ()=>{
+        expect(()=>isLeapYear(true)).toThrow("Year must be number");//в expect нужно передавать колбек а не результат
+    });
+    test(" false - error 'Year must be number'", ()=>{
+        expect(()=>isLeapYear(false)).toThrow("Year must be number");//в expect нужно передавать колбек а не результат
+    });
+    test(" ()=>{} - error 'Year must be number'", ()=>{
+        expect(()=>isLeapYear(()=>{})).toThrow("Year must be number");//в expect нужно передавать колбек а не результат
+    });
+    test("{} - error 'Year must be number'", ()=>{
+        expect(()=>isLeapYear({})).toThrow("Year must be number");//в expect нужно передавать колбек а не результат
+    });
+    test("[] - error 'Year must be number'", ()=>{
+        expect(()=>isLeapYear([])).toThrow("Year must be number");//в expect нужно передавать колбек а не результат
+    });
 })
