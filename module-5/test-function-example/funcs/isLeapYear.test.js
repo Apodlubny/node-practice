@@ -44,4 +44,8 @@ describe("test isLeapYear function", ()=>{
     test("1900 - false", ()=>{
         expect(isLeapYear(1900)).toBe(false);
     });
+
+    test("41 - error 'Year must be 42 or more'", ()=>{
+        expect(isLeapYear(41)).toThrow('Year must be 42 or more')
+    });
 })
