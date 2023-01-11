@@ -26,3 +26,6 @@ sgMail
   .send(email)
   .then(() => console.log("Email send successfully!"))
   .catch((error) => console.log(error));
+
+/* ввыносим данную логику в отдельную функцию в папке helpers
+ */
